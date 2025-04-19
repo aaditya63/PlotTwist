@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserStore } from "@/store/UserStore";
+import { UserStore } from "../store/userStore";
 
 
 export const LoginPage = () => {
@@ -50,7 +50,7 @@ export const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-[#8A2BE2] hover:bg-[#7B27CC] rounded-lg font-semibold transition-colors duration-200"
+            className="w-full cursor-pointer py-3 bg-[#8A2BE2] hover:bg-[#7B27CC] rounded-lg font-semibold transition-colors duration-200"
           >
             <i className="fas fa-sign-in-alt mr-2"></i> Log In
           </button>

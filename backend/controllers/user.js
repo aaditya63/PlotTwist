@@ -1,4 +1,4 @@
-const { getToken } = require("../config/jwt")
+const { getToken, verifyToken } = require("../config/jwt")
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
 
@@ -58,6 +58,58 @@ exports.signup = async (req, res) => {
         res.json({
             success: false,
             message: "User Not Created"
+        })
+    }
+}
+
+exports.checkAuth = async (req, res) => {
+
+    const token = req.cookies?.['jwt'];
+    if (!token) {
+        return res.json({
+            message: "user not Logged in",
+            success: false
+        })
+    }
+    const payload = verifyToken(token);
+    const email = payload.email;
+
+    try {
+        const user = await User.findOne({ email })
+        if (!user) {
+            return res.status(400).json({
+                error: 'Something Went Wrong',
+                success: false,
+            });
+        }
+        const userObj = user.toObject();
+        delete userObj.password;
+        res.status(200).json({
+            message: 'Login successful', user: userObj,
+            success: true
+        });
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+exports.logout= async (req,res) => {
+    const token = req.cookies?.['jwt'];
+    if (!token) {
+        return res.json({
+            message: "user already logout",
+            success: true
+        })
+    }
+    try{
+        res.clearCookie('jwt');
+        return res.json({
+            message: "user already logout",
+            success: true
+        })
+    }catch{
+        return res.json({
+            message: "user not logged out",
+            success: false
         })
     }
 }

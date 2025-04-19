@@ -17,27 +17,24 @@ const storySchema = new mongoose.Schema({
     },
     audio: [
         {
-            file: {
+            audioUrl: {
                 type: String,
-                required: false // or true if it's mandatory
+                required: false
+            },
+            Name: {
+                type: String,
+                required: false
             },
             duration: {
-                type: Number,
+                type: String,
                 required: false
             }
         }
     ],
-    profileImg: {
+    storyProfile: {
         type: String,
         default: "",
     },
-    story: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Story",
-            default: [],
-        },
-    ],
     likes: [
         {
             type: mongoose.Schema.Types.ObjectId,

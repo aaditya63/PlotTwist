@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import { UserStore } from "@/store/UserStore";
+import { UserStore } from "../store/userStore";
 
 
 export const SignupPage = () => {
@@ -26,6 +26,8 @@ export const SignupPage = () => {
         data.append("file", file)
         data.append("upload_preset", "first_preset")
         data.append("cloud_name", "dv7rknqkk")
+
+        console.log(data);
 
         const res = await fetch("https://api.cloudinary.com/v1_1/dv7rknqkk/image/upload", {
             method: "POST",
