@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectMongoDB = require('./config/db');
 const userRouter = require('./routes/user');
+const storyRouter = require('./routes/story');
+
 
 const app = express();
 dotenv.config()
@@ -25,6 +27,8 @@ app.use(cors({
 }));
 
 app.use('/api/user',userRouter);
+app.use('/api/story',storyRouter);
+
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);

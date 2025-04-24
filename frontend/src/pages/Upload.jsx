@@ -11,10 +11,12 @@ export default function Upload() {
     const [part, setPart] = useState(1);
     const [photo, setPhoto] = useState('');
     const [loading, setLoading] = useState(false);
-    let [audio, setAudio] = useState([])
+    const [audio, setAudio] = useState([])
+    const navigate = useNavigate()
 
 
-
+    const uploadStory = UserStore((state) => state.uploadStory);
+    
 
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
@@ -59,15 +61,13 @@ export default function Upload() {
             return;
         }
         
-        if (loading) {
+        if (loading || photo == "") {
             toast.info("Image is not uploaded!");
             return;
         }
         
-        
-        // Need to Call the Function to save on Server
-
-
+        uploadStory(title,description,photo,audio);
+        navigate('/')
     };
     return (
         <div className="min-h-screen bg-[#121212] text-white pt-20 flex items-center justify-center px-4">

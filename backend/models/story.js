@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const storySchema = new mongoose.Schema({
-    storyName: {
+    title: {
         type: String,
         required: true,
         unique: true,
@@ -21,7 +21,7 @@ const storySchema = new mongoose.Schema({
                 type: String,
                 required: false
             },
-            Name: {
+            storyName: {
                 type: String,
                 required: false
             },
@@ -31,7 +31,7 @@ const storySchema = new mongoose.Schema({
             }
         }
     ],
-    storyProfile: {
+    photo: {
         type: String,
         default: "",
     },

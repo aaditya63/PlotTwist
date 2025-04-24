@@ -4,8 +4,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#0A0A0A] border-t border-[#ffffff10] pt-16 pb-8 text-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          <div>
+        
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+          <div className="col-span-2">
             <div className="text-2xl font-bold flex items-center mb-6">
               <i className="fas fa-microphone-alt text-[#8A2BE2] mr-2"></i>
               <span className="bg-gradient-to-r from-[#8A2BE2] to-[#4A00E0] bg-clip-text text-transparent">Plot Twist</span>

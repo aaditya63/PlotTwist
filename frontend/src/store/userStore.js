@@ -67,5 +67,21 @@ export const UserStore = create((set, get) => ({
         } catch (error) {
             console.log("Failed to  Logout!");
         }
+    },
+
+    uploadStory: async (title,description,photo,audio) => {
+        set({ loading: true });
+        try {
+            const res = await axios.post(`http://localhost:5000/api/story/upload`, { title,description,photo,audio }, {
+                withCredentials: true
+            });
+            if(res.data.success == false)
+                toast.error("Failed to upload Story!");
+            else toast.success("Story Upload Successfull!");
+            set({ loading: false })
+        } catch (error) {
+            toast.error("Failed to Upload Story");
+            set({ loading: false })
+        }
     }
 }))
